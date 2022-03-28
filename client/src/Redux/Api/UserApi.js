@@ -7,7 +7,7 @@ import axios from "axios";
 
 export const registerUser = async (data) => {
     try {
-        const res = await axios.post("http://localhost:8080/register", data)
+        const res = await axios.post("/register", data)
         const result = res.data;
         return result;
     } catch (err) {
@@ -21,7 +21,7 @@ export const loginUser = async (data) => {
 
     try {
 
-        const res = await axios.post("http://localhost:8080/login", data)
+        const res = await axios.post("/login", data)
         const result = res.data;
         return result;
 

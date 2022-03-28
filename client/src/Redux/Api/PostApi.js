@@ -8,7 +8,7 @@ export const getPost = async (token, id) => {
         const res = await axios.request({
             method: 'GET',
 
-            url: (!id) ? `http://localhost:8080/get-posts` : `http://localhost:8080/get-posts?id=${id}`,
+            url: (!id) ? `/get-posts` : `/get-posts?id=${id}`,
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
@@ -28,7 +28,7 @@ export const getPost = async (token, id) => {
 export const getFriendPosts = async (token) => {
     try {
 
-        const res = await axios.get("http://localhost:8080/get-friends-posts", {
+        const res = await axios.get("/get-friends-posts", {
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
