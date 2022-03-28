@@ -44,7 +44,7 @@ export const getFriendPosts = async (token) => {
 
 export const uploadPost = async (token, postData) => {
     try {
-        const res = await axios.post("http://localhost:8080/upload-post",
+        const res = await axios.post("/upload-post",
             postData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -63,7 +63,7 @@ export const uploadPost = async (token, postData) => {
 export const updatePost = async (token, postData) => {
     try {
         console.log(postData)
-        const res = await axios.patch("http://localhost:8080/update-post",
+        const res = await axios.patch("/update-post",
             postData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -81,7 +81,7 @@ export const updatePost = async (token, postData) => {
 export const deletePost = async (token, id) => {
     try {
         console.log(id);
-        const res = await axios.delete(`http://localhost:8080/delete-post/${id}`, {
+        const res = await axios.delete(`/delete-post/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
@@ -98,7 +98,7 @@ export const deletePost = async (token, id) => {
 export const getPostById = async (token, id) => {
     try {
         console.log(id);
-        const res = await axios.get(`http://localhost:8080/post/${id}`, {
+        const res = await axios.get(`/post/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             }

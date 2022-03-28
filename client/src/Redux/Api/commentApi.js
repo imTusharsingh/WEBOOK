@@ -5,7 +5,7 @@ import axios from "axios";
 export const addComment = async (token, userComment) => {
     try {
         console.log(userComment)
-        const res = await axios.post("http://localhost:8080/add-comment",
+        const res = await axios.post("/add-comment",
             userComment,
             {
                 headers: {
@@ -26,7 +26,7 @@ export const addComment = async (token, userComment) => {
 export const editComment = async (token, userComment) => {
     try {
         console.log(userComment)
-        const res = await axios.patch("http://localhost:8080/edit-comment",
+        const res = await axios.patch("/edit-comment",
             userComment,
             {
                 headers: {
@@ -47,7 +47,7 @@ export const editComment = async (token, userComment) => {
 export const deleteComment = async (token, ids) => {
     try {
         console.log(ids)
-        const res = await axios.post("http://localhost:8080/remove-comment",
+        const res = await axios.post("/remove-comment",
             ids,
             {
                 headers: {

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getMessage = async (token, conversationId) => {
     try {
-        const res = await axios.get(`http://localhost:8080/get-message/${conversationId}`,
+        const res = await axios.get(`/get-message/${conversationId}`,
             {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -21,7 +21,7 @@ export const getMessage = async (token, conversationId) => {
 export const createMessage = async (token, data) => {
     console.log(token, data)
     try {
-        const res = await axios.post("http://localhost:8080/new-message",
+        const res = await axios.post("/new-message",
             data,
             {
                 headers: {

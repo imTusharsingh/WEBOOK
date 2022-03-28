@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getConversation = async (token) => {
     try {
-        const res = await axios.get("http://localhost:8080/get-all-conversation",
+        const res = await axios.get("/get-all-conversation",
             {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -20,7 +20,7 @@ export const getConversation = async (token) => {
 
 export const createConversation = async (token, receiverId) => {
     try {
-        const res = await axios.post("http://localhost:8080/create-conversation",
+        const res = await axios.post("/create-conversation",
             { receiverId },
             {
                 headers: {

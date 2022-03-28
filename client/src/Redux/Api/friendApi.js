@@ -5,7 +5,7 @@ import axios from "axios";
 export const sendFriendRequest = async (token, id) => {
     try {
         console.log(id);
-        const res = await axios.post("http://localhost:8080/send-friend-request",
+        const res = await axios.post("/send-friend-request",
             { recieverId: id },
             {
                 headers: {
@@ -27,7 +27,7 @@ export const sendFriendRequest = async (token, id) => {
 
 export const getFriendRequestList = async (token) => {
     try {
-        const res = await axios.get("http://localhost:8080/get-friend-request",
+        const res = await axios.get("/get-friend-request",
             {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -45,7 +45,7 @@ export const getFriendRequestList = async (token) => {
 
 export const getFriendRequestSentList = async (token) => {
     try {
-        const res = await axios.get("http://localhost:8080/get-friend-request-sent",
+        const res = await axios.get("/get-friend-request-sent",
             {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -63,7 +63,7 @@ export const getFriendRequestSentList = async (token) => {
 
 export const getFriendsList = async (token) => {
     try {
-        const res = await axios.get("http://localhost:8080/get-friends",
+        const res = await axios.get("/get-friends",
             {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -82,7 +82,7 @@ export const getFriendsList = async (token) => {
 export const acceptFriendRequest = async (token, id) => {
     try {
         console.log(id)
-        const res = await axios.patch("http://localhost:8080/accept-friend-request",
+        const res = await axios.patch("/accept-friend-request",
             { id },
             {
                 headers: {
@@ -102,7 +102,7 @@ export const acceptFriendRequest = async (token, id) => {
 export const rejectFriendRequest = async (token, id) => {
     try {
         console.log(id)
-        const res = await axios.delete(`http://localhost:8080/reject-friend-request/${id}`,
+        const res = await axios.delete(`/reject-friend-request/${id}`,
             {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -121,7 +121,7 @@ export const rejectFriendRequest = async (token, id) => {
 export const removeFriendRequest = async (token, id) => {
     try {
         console.log(id)
-        const res = await axios.delete(`http://localhost:8080/remove-friend-request/${id}`,
+        const res = await axios.delete(`/remove-friend-request/${id}`,
             {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -140,7 +140,7 @@ export const removeFriendRequest = async (token, id) => {
 export const removeFriend = async (token, id) => {
     try {
         console.log(id)
-        const res = await axios.patch(`http://localhost:8080/remove-friend`,
+        const res = await axios.patch(`/remove-friend`,
             { id },
             {
                 headers: {

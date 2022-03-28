@@ -6,7 +6,7 @@ import axios from "axios";
 export const like = async (token, id) => {
     try {
         console.log(id)
-        const res = await axios.post("http://localhost:8080/like",
+        const res = await axios.post("/like",
             { id: id },
             {
                 headers: {
@@ -28,7 +28,7 @@ export const like = async (token, id) => {
 export const dislike = async (token, id) => {
     try {
         console.log(id)
-        const res = await axios.post("http://localhost:8080/dislike",
+        const res = await axios.post("/dislike",
             { id: id },
             {
                 headers: {

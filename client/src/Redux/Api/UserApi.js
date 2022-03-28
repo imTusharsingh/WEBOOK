@@ -40,7 +40,7 @@ export const getUser = async (token, id) => {
         const res = await axios.request({
             method: 'GET',
 
-            url: (!id) ? `http://localhost:8080/user` : `http://localhost:8080/user?id=${id}`,
+            url: (!id) ? `/user` : `/user?id=${id}`,
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
@@ -61,7 +61,7 @@ export const getUser = async (token, id) => {
 export const editUser = async (token, userData) => {
     console.log(userData)
     try {
-        const res = await axios.patch("http://localhost:8080/edit-profile",
+        const res = await axios.patch("/edit-profile",
             userData,
             {
                 headers: {
@@ -83,7 +83,7 @@ export const searchUser = async (token, searchData) => {
     try {
         const res = await axios.request({
             method: 'POST',
-            url: "http://localhost:8080/search-user",
+            url: "/search-user",
             data: searchData,
             params: {
                 city: searchData.city,
