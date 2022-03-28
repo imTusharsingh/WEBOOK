@@ -1,5 +1,5 @@
 const express = require("express");
-const Message = require("../models/Message");
+const Message = require("../Models/Message");
 const auth = require('../middleware/auth')
 const mongoose = require('mongoose')
 const router = express.Router()
