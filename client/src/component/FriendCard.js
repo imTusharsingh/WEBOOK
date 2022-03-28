@@ -47,7 +47,7 @@ const FriendCard = ({ isFriend, friends, isSentRequest }) => {
                                     avatar={
                                         <Avatar
                                             alt={(isFriend) ? data.name[0] : (isSentRequest) ? data.recieverId.name[0] : data.senderId.name[0]}
-                                            src={`http://localhost:8080/${(isFriend) ? data.profileImg : (isSentRequest) ? data.recieverId.profileImg : data.senderId.profileImg}`}
+                                            src={`/${(isFriend) ? data.profileImg : (isSentRequest) ? data.recieverId.profileImg : data.senderId.profileImg}`}
                                             sx={{ bgcolor: "red", textTransform: "capitalize" }} />
 
                                     }

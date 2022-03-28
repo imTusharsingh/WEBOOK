@@ -92,7 +92,7 @@ const Profile = () => {
                     {userData.loading ? <Skeleton animation="wave" variant="circular" width={150} height={150} /> :
                         <Avatar
                             alt={userData.data.name}
-                            src={(userData.data.profileImg) && `http://localhost:8080/${userData.data.profileImg}`}
+                            src={(userData.data.profileImg) && `/${userData.data.profileImg}`}
                             sx={{ width: 150, height: 150, fontSize: "120px" }}
                         />}
                     <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>

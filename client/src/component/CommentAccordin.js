@@ -91,7 +91,7 @@ const CommentDrawer = ({ expanded, setExpanded, post, isSelfPosts, id }) => {
                             <React.Fragment key={comment._id}>
                                 <Divider sx={{ width: "100%" }} />
                                 <div style={{ display: 'flex', margin: "8px 0px" }} >
-                                    <Avatar alt={comment.userId.name} src={`http://localhost:8080/${comment.userId.profileImg}`}
+                                    <Avatar alt={comment.userId.name} src={`/${comment.userId.profileImg}`}
                                         sx={{ bgcolor: "red", height: "30px", width: "30px", fontSize: "15px" }}
                                     />
                                     <Typography variant="body2" color="text.secondary" sx={{ margin: "0px 10px" }}>

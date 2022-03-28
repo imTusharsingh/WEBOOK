@@ -99,7 +99,7 @@ const LeftChat = () => {
                                 onClick={() => handelCreateConversation(friend._id)}
                             >
                                 <ListItemAvatar>
-                                    <Avatar alt={friend.name[0]} src={`http://localhost:8080/${friend.profileImg}`} />
+                                    <Avatar alt={friend.name[0]} src={`/${friend.profileImg}`} />
                                 </ListItemAvatar>
                                 <ListItemText
                                     primary={friend.name}
@@ -180,7 +180,7 @@ const LeftChat = () => {
                                                         (member._id !== auth.data._id)
                                                     )
                                                 }).name[0]}
-                                                    src={`http://localhost:8080/${elem.members.find(member => {
+                                                    src={`/${elem.members.find(member => {
                                                         return (
                                                             (member._id !== auth.data._id)
                                                         )

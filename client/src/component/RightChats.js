@@ -55,7 +55,7 @@ const RightChats = () => {
                                             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                                             variant="dot"
                                         >
-                                            <Avatar alt={online.name[0]} src={`http://localhost:8080/${online.profileImg}`} />
+                                            <Avatar alt={online.name[0]} src={`/${online.profileImg}`} />
                                         </StyledBadge>
                                     </ListItemAvatar>
                                     <ListItemText

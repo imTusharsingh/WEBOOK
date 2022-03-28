@@ -91,7 +91,7 @@ const Chats = () => {
                 {(location.state?.reciever) ?
                     <>
                         <Box sx={{ display: "flex", gap: "10px", alignItems: "center", padding: "11px", background: "rgb(61,51,51)", color: "white", fontSize: "25px", fontWeight: 600, position: "sticky", top: "0", zIndex: "2" }}  >
-                            <Avatar alt={location.state.reciever.name[0]} src={`http://localhost:8080/${location.state.reciever.profileImg}`} />
+                            <Avatar alt={location.state.reciever.name[0]} src={`/${location.state.reciever.profileImg}`} />
                             <Typography>{location.state.reciever.name}</Typography>
                         </Box>
                         <Box sx={{ display: "flex", flexDirection: 'column' }}>
@@ -101,7 +101,7 @@ const Chats = () => {
                                     elem.reciever._id === auth.data._id ?
 
                                         <Box ref={scrollRef} sx={{ display: "flex", margin: "6px", marginRight: "auto", gap: "8px", maxWidth: "75%" }} key={elem._id}>
-                                            <Avatar alt={location.state.reciever.name[0]} src={`http://localhost:8080/${location.state.reciever.profileImg}`} sx={{ width: "35px", height: "35px" }} />
+                                            <Avatar alt={location.state.reciever.name[0]} src={`/${location.state.reciever.profileImg}`} sx={{ width: "35px", height: "35px" }} />
                                             <Box>
                                                 <Box sx={{ background: "linear-gradient(100deg,#227cea,#429cef)", padding: "10px", borderRadius: "10px" }}>
                                                     {elem.text}
@@ -124,7 +124,7 @@ const Chats = () => {
                                                     {moment.duration(moment.utc(elem.createdAt).diff(moment(new Date()))).humanize(true)}
                                                 </Typography>
                                             </Box>
-                                            <Avatar alt={auth.data.name[0]} src={`http://localhost:8080/${auth.data.profileImg}`} sx={{ width: "35px", height: "35px", textTransform: "capitalize" }} />
+                                            <Avatar alt={auth.data.name[0]} src={`/${auth.data.profileImg}`} sx={{ width: "35px", height: "35px", textTransform: "capitalize" }} />
                                         </Box>
 
 

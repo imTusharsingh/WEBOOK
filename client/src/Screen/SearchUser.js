@@ -150,7 +150,7 @@ const SearchUser = () => {
                                         <ListItem key={user._id}>
                                             <Link style={{ textDecoration: "none", color: "inherit" }} to={`/profile?_id=${user._id}`}>
                                                 <ListItemAvatar>
-                                                    <Avatar alt="hello" src={user.profileImg && `http://localhost:8080/${user.profileImg}`} />
+                                                    <Avatar alt="hello" src={user.profileImg && `/${user.profileImg}`} />
                                                 </ListItemAvatar>
                                             </Link>
 

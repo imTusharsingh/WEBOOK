@@ -74,7 +74,7 @@ const RightProfile = () => {
                 <div className={classes.avatarWrapper}>
                     <Avatar
                         alt={userData.data.name}
-                        src={(userData.data.profileImg) && `http://localhost:8080/${userData.data.profileImg}`}
+                        src={(userData.data.profileImg) && `/${userData.data.profileImg}`}
 
                         className={classes.avtar}
                     />

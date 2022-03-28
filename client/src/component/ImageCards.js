@@ -18,8 +18,8 @@ const ImageCards = ({ userPost, _id }) => {
                         <ImageListItem   >
 
                             <img
-                                src={`http://localhost:8080/${post.postImage}?w=164&h=164&fit=crop&auto=format`}
-                                srcSet={`http://localhost:8080/${post.postImage}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                                src={`/${post.postImage}?w=164&h=164&fit=crop&auto=format`}
+                                srcSet={`/${post.postImage}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                 alt={post.caption}
                                 loading="lazy"
                             />

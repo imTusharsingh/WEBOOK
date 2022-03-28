@@ -138,7 +138,7 @@ const PostCard = ({ post, isSelfPosts, id }) => {
                 <CardMedia
                     component="img"
                     width="100%"
-                    image={`http://localhost:8080/${post.postImage}`}
+                    image={`/${post.postImage}`}
 
                 />
                 <CardContent>
