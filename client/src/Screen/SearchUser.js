@@ -2,6 +2,8 @@ import { Avatar, Box, Button, Divider, FormControl, FormHelperText, InputLabel, 
 
 import React, { useState, useEffect } from 'react'
 
+import { State, City } from "country-state-city"
+
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -21,9 +23,17 @@ const SearchUser = () => {
     const friendRequestList = useSelector(state => state.friendRequestList)
     const sentRequestList = useSelector(state => state.sentRequestList)
     const { data } = useSelector(state => state.auth)
-    const [search, setSearch] = useState()
-    const [city, SetCity] = useState()
+
+    const allState = State.getStatesOfCountry("IN");
     const [state, setState] = useState();
+    const [allCityOfSelectedState, setAllCityOfSelectedState] = useState([])
+    const [city, SetCity] = useState()
+
+    useEffect(() => {
+        setAllCityOfSelectedState(City.getCitiesOfState("IN", state))
+    }, [state])
+
+    const [search, setSearch] = useState()
     const [more, setMore] = useState(1);
 
 
@@ -100,24 +110,6 @@ const SearchUser = () => {
 
                     <div>
                         <FormControl sx={{ m: 1, minWidth: 120 }}>
-                            <InputLabel id="demo-simple-select-helper-label">City</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                value={city}
-                                label="City"
-                                onChange={(e) => SetCity(e.target.value)}
-                            >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value="test1City">test3City</MenuItem>
-                                <MenuItem value="test">test</MenuItem>
-                                <MenuItem value="city">city</MenuItem>
-                            </Select>
-                            <FormHelperText>Filter Using City</FormHelperText>
-                        </FormControl>
-                        <FormControl sx={{ m: 1, minWidth: 120 }}>
                             <InputLabel id="demo-simple-select-helper-label">State</InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
@@ -129,12 +121,31 @@ const SearchUser = () => {
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value="test1State">test1State</MenuItem>
-                                <MenuItem value="test">test</MenuItem>
-                                <MenuItem value="state">state</MenuItem>
+                                {allState.map(elem => (
+                                    <MenuItem value={elem.isoCode}>{elem.name}</MenuItem>
+                                ))}
                             </Select>
                             <FormHelperText>Filter Using State</FormHelperText>
                         </FormControl>
+                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                            <InputLabel id="demo-simple-select-helper-label">City</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                value={city}
+                                label="City"
+                                onChange={(e) => SetCity(e.target.value)}
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                {allCityOfSelectedState.map(elem => (
+                                    <MenuItem value={elem.name}>{elem.name}</MenuItem>
+                                ))}
+                            </Select>
+                            <FormHelperText>Filter Using City</FormHelperText>
+                        </FormControl>
+
                     </div>
                 </Box>
                 <Box sx={{ border: "1px solid black", padding: "5px" }}>

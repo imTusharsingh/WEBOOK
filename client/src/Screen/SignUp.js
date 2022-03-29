@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import { LoadingButton } from '@mui/lab';
@@ -11,10 +11,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { MenuItem, FormHelperText, FormControl, InputLabel, Select } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { registerUserRequest } from "../Redux/USER/Registration/action"
-
+import { State, City } from 'country-state-city';
 
 
 
@@ -23,7 +22,21 @@ const theme = createTheme();
 const SignUp = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
-    const { loading, error } = useSelector(state => state.registration)
+    const { loading, error, message } = useSelector(state => state.registration)
+
+    const allState = State.getStatesOfCountry("IN");
+    const [selectedState, setSelectedState] = useState()
+    const [allCityOfSelectedState, setAllCityOfSelectedState] = useState([])
+    const [selectedCity, setSelectedCity] = useState()
+
+    useEffect(() => {
+        setAllCityOfSelectedState(City.getCitiesOfState("IN", selectedState))
+    }, [selectedState])
+
+
+    console.log(selectedState, selectedCity)
+
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -41,13 +54,14 @@ const SignUp = () => {
             }
 
         }
+        console.log(userData)
 
         dispatch(registerUserRequest(userData))
 
     };
     if (error) {
         console.log(error)
-    } else {
+    } else if (!loading && message) {
         navigate("/signin")
     }
 
@@ -129,40 +143,42 @@ const SignUp = () => {
 
                             <Grid item xs={12} sm={6}>
                                 <FormControl sx={{ m: 1, minWidth: 120 }}>
-                                    <InputLabel id="demo-simple-select-helper-label" required>State</InputLabel>
+                                    <InputLabel id="demo-simple-select-helper-label1" required>State</InputLabel>
                                     <Select
-                                        labelId="demo-simple-select-helper-label"
+                                        labelId="demo-simple-select-helper-label1"
                                         id="demo-simple-select-state"
                                         name="state"
                                         label="State"
+                                        onChange={(e) => setSelectedState(e.target.value)}
                                         required
                                     >
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value="test1City">test3City</MenuItem>
-                                        <MenuItem value="test">test</MenuItem>
-                                        <MenuItem value="city">city</MenuItem>
+                                        {allState.map(elem => (
+                                            <MenuItem value={elem.isoCode}>{elem.name}</MenuItem>
+                                        ))}
                                     </Select>
                                     <FormHelperText>select your State</FormHelperText>
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <FormControl sx={{ m: 1, minWidth: 120 }}>
-                                    <InputLabel id="demo-simple-select-helper-label" required>City</InputLabel>
+                                    <InputLabel id="demo-simple-select-helper-label2" required>City</InputLabel>
                                     <Select
-                                        labelId="demo-simple-select-helper-label"
+                                        labelId="demo-simple-select-helper-label2"
                                         id="demo-simple-select-city"
                                         name="city"
                                         label="City"
+                                        onChange={(e) => setSelectedCity(e.target.value)}
                                         required
                                     >
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value="test1City">test3City</MenuItem>
-                                        <MenuItem value="test">test</MenuItem>
-                                        <MenuItem value="city">city</MenuItem>
+                                        {allCityOfSelectedState.map(elem => (
+                                            <MenuItem value={elem.name}>{elem.name}</MenuItem>
+                                        ))}
                                     </Select>
                                     <FormHelperText>Select your City</FormHelperText>
                                 </FormControl>
