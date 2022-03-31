@@ -15,7 +15,7 @@ import moment from 'moment'
 
 
 
-const PostCard = ({ post, isSelfPosts, id }) => {
+const PostCard = ({ post, isSelfPosts, id, limit }) => {
 
 
 
@@ -67,11 +67,11 @@ const PostCard = ({ post, isSelfPosts, id }) => {
 
     const handelLike = (postId) => {
 
-        dispatch(likeRequest({ postId, isSelfPosts, id }))
+        dispatch(likeRequest({ postId, isSelfPosts, id, limit: limit - 5 }))
         console.log(postId)
     }
     const handelDisLike = (postId) => {
-        dispatch(dislikeRequest({ postId, isSelfPosts, id }))
+        dispatch(dislikeRequest({ postId, isSelfPosts, id, limit: limit - 5 }))
         console.log(postId)
     }
 
@@ -196,7 +196,7 @@ const PostCard = ({ post, isSelfPosts, id }) => {
                         </strong>
                     </Typography>
 
-                    <CommentDrawer expanded={expanded} setExpanded={setExpanded} post={post} isSelfPosts={isSelfPosts} id={id} />
+                    <CommentDrawer expanded={expanded} setExpanded={setExpanded} post={post} isSelfPosts={isSelfPosts} id={id} limit={limit} />
 
 
 

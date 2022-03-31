@@ -5,9 +5,10 @@ import {
 } from "../../Types";
 
 
-export const getFriendsPostRequest = () => {
+export const getFriendsPostRequest = (limit) => {
     return {
-        type: GET_FRIENDS_POST_REQUEST
+        type: GET_FRIENDS_POST_REQUEST,
+        payload: limit
     }
 }
 

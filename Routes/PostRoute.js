@@ -113,7 +113,7 @@ Router.patch("/update-post", auth, async (req, res) => {
 //get-friends-posts 
 
 
-Router.get("/get-friends-posts", auth, async (req, res) => {
+Router.get("/get-friends-posts1", auth, async (req, res) => {
     try {
 
 
@@ -152,8 +152,8 @@ Router.get("/get-friends-posts", auth, async (req, res) => {
 
         ])
 
-        await Post.populate(posts[0].Posts, { path: "userId", select: { _id: 1, name: 1 } })
-        await Post.populate(posts[0].Posts, { path: "comments.userId", select: { _id: 1, name: 1 } })
+        await Post.populate(posts[0].Posts, { path: "userId", select: { _id: 1, name: 1, profileImg: 1 } })
+        await Post.populate(posts[0].Posts, { path: "comments.userId", select: { _id: 1, name: 1, profileImg: 1 } })
         // console.log(posts)
         res.status(200).json(posts[0].Posts)
 
@@ -178,6 +178,71 @@ Router.get("/post/:id", auth, async (req, res) => {
 
     } catch (error) {
         return res.status(500).json({ error: error })
+    }
+})
+
+
+
+
+Router.get("/get-friends-posts", auth, async (req, res) => {
+    try {
+        const limit = parseInt(req.query?.limit);
+        const page = req.query?.page;
+        const posts = await User.aggregate([
+            {
+                '$match': {
+                    '_id': mongoose.Types.ObjectId(req.user_id)
+                }
+            }, {
+                '$addFields': {
+                    'users': {
+                        '$concatArrays': [
+                            '$friends', [
+                                mongoose.Types.ObjectId(req.user_id)
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                '$lookup': {
+                    'from': 'posts',
+                    'localField': 'users',
+                    'foreignField': 'userId',
+                    'as': 'posts'
+                }
+            },
+            {
+                '$unwind': {
+                    'path': '$posts'
+                }
+            },
+            {
+                '$sort': {
+                    'posts.createdAt': -1
+                }
+            },
+            {
+                "$limit": limit
+            },
+            {
+                '$group': {
+                    '_id': '$_id',
+                    'posts': {
+                        '$push': '$posts'
+                    }
+                }
+            }
+        ])
+        if (posts.length === 0) { return res.status(200).json([]) }
+        await Post.populate(posts[0].posts, { path: "userId", select: { _id: 1, name: 1, profileImg: 1 } })
+        await Post.populate(posts[0].posts, { path: "comments.userId", select: { _id: 1, name: 1, profileImg: 1 } })
+
+        res.status(200).json(posts[0].posts)
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error })
     }
 })
 

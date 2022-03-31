@@ -8,7 +8,7 @@ import { addCommentRequest } from "../Redux/COMMENT/addComment/actions"
 import { deleteCommentRequest } from "../Redux/COMMENT/deleteComment/actions"
 import { editCommentRequest } from "../Redux/COMMENT/editComment/actions"
 
-const CommentDrawer = ({ expanded, setExpanded, post, isSelfPosts, id }) => {
+const CommentDrawer = ({ expanded, setExpanded, post, isSelfPosts, id, limit }) => {
 
     const [newComment, setNewComment] = useState('');
     const [oldComment, setOldComment] = useState('');
@@ -41,7 +41,7 @@ const CommentDrawer = ({ expanded, setExpanded, post, isSelfPosts, id }) => {
             id: _id,
             comment: newComment
         }
-        dispatch(addCommentRequest({ commentdata, isSelfPosts, id }))
+        dispatch(addCommentRequest({ commentdata, isSelfPosts, id, limit: limit - 5 }))
         setNewComment("")
     }
 
@@ -50,7 +50,7 @@ const CommentDrawer = ({ expanded, setExpanded, post, isSelfPosts, id }) => {
             post_id,
             comment_id: commentId
         }
-        dispatch(deleteCommentRequest({ commentdata, isSelfPosts, id }))
+        dispatch(deleteCommentRequest({ commentdata, isSelfPosts, id, limit: limit - 5 }))
     }
 
     const handleEdit = () => {
@@ -64,7 +64,7 @@ const CommentDrawer = ({ expanded, setExpanded, post, isSelfPosts, id }) => {
         const commentdata = {
             comment_id: commentId, comment: newComment
         }
-        dispatch(editCommentRequest({ commentdata, isSelfPosts, id }))
+        dispatch(editCommentRequest({ commentdata, isSelfPosts, id, limit: limit - 5 }))
         setIsEdit(false);
         setNewComment("");
         console.log({ comment_id: commentId, comment: newComment })

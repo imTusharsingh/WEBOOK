@@ -134,12 +134,12 @@ Router.post("/search-user", auth, async (req, res) => {
     try {
         const { city, state } = req.query;
         if (req.body.search) {
-            var userPattern = new RegExp("^" + req.body.search)
+            var userPattern = new RegExp("^" + req.body.search, 'i')
         }
         else {
             var userPattern = req.body.search
         }
-        console.warn(userPattern)
+
         const limit = req.body.more
         console.log(req.query, req.body)
 

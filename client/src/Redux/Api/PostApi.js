@@ -25,12 +25,15 @@ export const getPost = async (token, id) => {
     }
 }
 
-export const getFriendPosts = async (token) => {
+export const getFriendPosts = async (token, limit) => {
     try {
 
         const res = await axios.get("/get-friends-posts", {
             headers: {
                 'Authorization': `Bearer ${token}`,
+            }, params: {
+                page: 1,
+                limit: limit
             }
         })
         const posts = res.data;

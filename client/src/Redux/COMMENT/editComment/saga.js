@@ -23,7 +23,7 @@ function* editRequest(action) {
             yield put(getPostSuccess(Posts))
         }
         else {
-            const posts = yield call(getFriendPosts, token);
+            const posts = yield call(getFriendPosts, token, action.payload.limit);
             yield put(getFriendsPostSuccess(posts))
         }
     } catch (error) {
