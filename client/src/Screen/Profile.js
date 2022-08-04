@@ -50,7 +50,7 @@ const Profile = () => {
     }
     const findSentRequestElement = (array, item) => {
         return array.find((element) => {
-            return element.recieverId === item;
+            return element.recieverId._id === item;
         })
     }
     const findRequestElement = (array, item) => {

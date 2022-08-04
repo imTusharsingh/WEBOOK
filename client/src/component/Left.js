@@ -63,7 +63,7 @@ const Left = () => {
         <>
             <div className={classes.root} >
                 <Typography variant='h6' className={classes.Logo}>
-                    FriendBook
+                    WeBook
                 </Typography>
                 <Divider sx={{ backgroundColor: 'white', width: '100%' }} />
 
